@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  current: 1
+  highest: 1
+
+two:
+  user: two
+  current: 1
+  highest: 1

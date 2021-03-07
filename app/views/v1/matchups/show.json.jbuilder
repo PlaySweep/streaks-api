@@ -1,0 +1,1 @@
+json.matchup @matchup, partial: 'v1/matchups/matchup', as: :matchup
