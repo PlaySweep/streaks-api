@@ -4,5 +4,10 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create, :update]
     resources :picks, only: [:show]
     resources :rounds, only: [:index, :show]
+    resources :users do
+      scope module: :users do
+        resources :cards, only: :index
+      end
+    end
   end
 end

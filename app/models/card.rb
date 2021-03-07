@@ -2,6 +2,10 @@ class Card < ApplicationRecord
   belongs_to :user
   belongs_to :round
 
+  enum status: [:pending, :win, :loss]
+
+  scope :ordered, -> { order(created_at: :asc) }
+
   after_save :update_streak, :deliver_notification
 
   private

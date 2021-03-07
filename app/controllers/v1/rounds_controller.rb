@@ -2,7 +2,7 @@ class V1::RoundsController < ApplicationController
   respond_to :json
   
   def index
-    @rounds = Round.all
+    @rounds = Round.ordered.pending if params[:pending]
     respond_with @rounds
   end
 

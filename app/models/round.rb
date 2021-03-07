@@ -8,6 +8,8 @@ class Round < ApplicationRecord
 
   enum status: [ :inactive, :pending, :started, :ready, :complete, :done, :postponed, :deactivated ]
 
+  scope :ordered, -> { order(start_time: :asc) }
+  
   after_save :settle_results
 
   def winners
