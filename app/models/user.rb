@@ -20,4 +20,5 @@ class User < ApplicationRecord
   def add_streak_record
     Streak.find_or_create_by(user_id: id)
   end
+
 end
