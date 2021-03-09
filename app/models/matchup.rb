@@ -3,6 +3,7 @@ class Matchup < ApplicationRecord
   has_many :selections
   has_many :picks
   has_many :users, through: :picks
+  
   enum status: [ :incomplete, :ready, :complete, :closed ]
 
   scope :ordered, -> { order(order: :asc) }

@@ -7,4 +7,6 @@ class Selection < ApplicationRecord
   scope :ordered, -> { order(order: :asc) }
 
   enum status: [ :pending, :winner, :loser ]
+
+  scope :ordered, -> { order(order: :asc) }
 end

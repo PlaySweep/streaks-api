@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :rounds, only: [:index, :show]
     resources :users do
       scope module: :users do
-        resources :cards, only: :index
+        resources :cards, only: [:index, :create]
+        resources :picks, only: [:index, :create]
       end
     end
   end
