@@ -1,6 +1,6 @@
 # config/deploy/production.rb
 
-server 'streaks_api', user: 'ubuntu', roles: %w{ app db web }
+server 'streaks', user: 'ubuntu', roles: %w{ app db web }
 set :deploy_to, "/var/www/streaks_api"
 set :tmp_dir, '/home/deploy/tmp'
 

@@ -1,0 +1,1 @@
+json.prizes @prizes, partial: 'v1/prizes/prize', as: :prize

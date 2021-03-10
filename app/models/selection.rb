@@ -9,4 +9,8 @@ class Selection < ApplicationRecord
   enum status: [ :pending, :winner, :loser ]
 
   scope :ordered, -> { order(order: :asc) }
+
+  def selected current_user
+    id == current_user.picks.where(matchup_id: matchup_id).where(selection_id: id).try(:first).try(:selection_id)
+  end
 end

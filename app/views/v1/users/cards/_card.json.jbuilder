@@ -1,7 +1,4 @@
 json.id card.id
-json.round do
-  json.id card.round_id
-  json.name card.round.name
-  json.status card.round.status
-end
+json.round card.round, partial: 'v1/rounds/round', as: :round
 json.status card.status
+json.score card.picks_won_count

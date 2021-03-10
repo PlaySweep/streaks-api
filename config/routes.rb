@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :users, only: [:show, :create, :update]
     resources :picks, only: [:show]
+    resources :prizes, only: [:index, :show]
     resources :rounds, only: [:index, :show]
     resources :users do
       scope module: :users do

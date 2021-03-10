@@ -1,5 +1,6 @@
 class V1::UsersController < ApplicationController
   respond_to :json
+  skip_before_action :authenticate!, only: [ :create ]
   
   def show
     @user = User.find(params[:id])
@@ -30,7 +31,7 @@ class V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password, :account_id)
+    params.permit(:username, :first_name, :last_name, :email, :password, :account_id)
   end
 
 end
