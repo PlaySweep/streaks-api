@@ -6,6 +6,6 @@ class Streak < ApplicationRecord
   private
 
   def update_user_stats
-    user.update_leaderboard_for(:streak)
+    user.update_leaderboard_for(:streak) if saved_change_to_current?
   end
 end
