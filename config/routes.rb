@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     resources :picks, only: [:show]
     resources :prizes, only: [:index, :show]
     resources :rounds, only: [:index, :show]
+    resources :leaderboards, only: [:index]
     resources :users do
       scope module: :users do
         resources :cards, only: [:index, :create]
         resources :picks, only: [:index, :create]
+        resources :orders, only: [:create]
       end
     end
   end

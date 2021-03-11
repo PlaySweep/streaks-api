@@ -15,6 +15,15 @@ class User < ApplicationRecord
     winning_picks.size >= Round::WINNING_THRESHOLD
   end
 
+  def update_leaderboard_for type
+    STREAK_LEADERBOARD.rank_member(id.to_s, streak.current, { name: username }.to_json) if type == :streak
+    POINTS_LEADERBOARD.rank_member(id.to_s, picks.win.size, { name: username }.to_json) if type == :points
+  end
+
+  def rank
+    STREAK_LEADERBOARD.rank_for(id.to_s)
+  end
+
   private
 
   def add_streak_record

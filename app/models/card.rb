@@ -12,7 +12,7 @@ class Card < ApplicationRecord
 
   def update_streak
     if saved_change_to_picks_won_count?
-      if picks_won_count >= 3
+      if picks_won_count == 3
         streak = user.streak
         if streak.nil?
           user.create_streak(current: 1, highest: 1, previous: 0)
@@ -25,7 +25,7 @@ class Card < ApplicationRecord
 
   def deliver_notification
     if saved_change_to_picks_won_count?
-      if picks_won_count >= 3
+      if picks_won_count == 3
         # DeliverStreakNotificationJob.perform_now
       end
     end

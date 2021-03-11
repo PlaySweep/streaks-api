@@ -1,0 +1,1 @@
+json.users @users, partial: 'v1/leaderboards/leaderboard', as: :user
