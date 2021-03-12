@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :rewards
   has_many :cards
 
+  before_create :set_referral_code
   after_create :add_streak_record
 
   def won_round? current_round
@@ -28,6 +29,10 @@ class User < ApplicationRecord
 
   def add_streak_record
     Streak.find_or_create_by(user_id: id)
+  end
+
+  def set_referral_code
+    self.referral_code = "#{self.username}#{SecureRandom.hex(2)}" if self.username
   end
 
 end
