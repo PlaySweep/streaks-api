@@ -6,12 +6,16 @@ class Order < ApplicationRecord
   scope :for_yesterday, -> { where('created_at BETWEEN ? AND ?', DateTime.current.beginning_of_day - 1, DateTime.current.end_of_day - 1) }
   scope :recent, -> { where('created_at BETWEEN ? AND ?', DateTime.current.beginning_of_day - 14, DateTime.current.end_of_day) }
 
-  after_create :deliver_notification
+  after_create :deliver_notification, :reset_streak
 
   private
 
   def deliver_notification
     # Send Order Email
+  end
+
+  def reset_streak
+    user.streak.update_attributes(current: 0)
   end
 
 end

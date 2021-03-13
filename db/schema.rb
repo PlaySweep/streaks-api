@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_173031) do
+ActiveRecord::Schema.define(version: 2021_03_13_210005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2021_03_12_173031) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "line1"
+    t.string "line2"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.string "country", default: "United States"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -73,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_173031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+    t.integer "inventory", default: 0
   end
 
   create_table "rewards", force: :cascade do |t|
@@ -133,6 +147,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_173031) do
     t.index ["account_id"], name: "index_users_on_account_id"
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "cards", "rounds"
   add_foreign_key "cards", "users"
   add_foreign_key "matchups", "rounds"

@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_secure_password
 
   belongs_to :account
-  has_one :streak
+  has_one :address, dependent: :destroy
+  has_one :streak, dependent: :destroy
   has_many :picks
   has_many :rewards
   has_many :cards

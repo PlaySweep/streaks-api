@@ -2,7 +2,7 @@ class Round < ApplicationRecord
   WINNING_THRESHOLD = 3
   belongs_to :account
   has_many :matchups, dependent: :destroy
-  has_many :selections, through: :matchups
+  has_many :selections, through: :matchups, dependent: :destroy
   has_many :users, -> { distinct }, through: :matchups
   has_many :picks, -> { distinct }, through: :users
 
