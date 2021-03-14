@@ -11,10 +11,16 @@ class V1::Users::CardsController < ApplicationController
     respond_with @card
   end
 
+  def update
+    @card = Card.find(params[:id])
+    @card.update_attributes(card_params)
+    respond_with @card
+  end
+
   private
 
   def card_params
-    params.require(:card).permit(:user_id, :round_id)
+    params.require(:card).permit(:user_id, :round_id, :bonus)
   end
 
 end

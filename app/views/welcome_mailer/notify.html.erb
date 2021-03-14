@@ -10,7 +10,19 @@
 </head>
 <body>
   <div class="w3-content" style="margin: 0 auto;max-width:500px;width:500px;text-align: center;">
-
+    <div class="w3-display-container w3-center" style="display: block;height:auto;background-color:rgb(17, 30, 75);">
+      <img src="https://streaks-challenge.s3.amazonaws.com/legends_logo.png" style="width: 300px;height: auto;" />
+      <div class="w3-container w3-content" style="max-width:800px;margin:10% auto;" id="band">
+        <div style="position:relative;bottom:50px;text-align:center;">
+          <h1 class="w3-wide" style="font-size:24px;font-weight:900;margin:2.5% auto;color:#fff">Congratulations <%= @user.first_name %>, you are registered!</h1>
+          <button style="border-radius:15px;width:60%;margin:2.5% auto;border:2.5px solid rgb(144, 213, 251);padding:3%;background-color:rgb(17, 30, 75);font-size: 18px;text-transform: uppercase;color:#fff;">
+          <a class="w3-wide" href="https://streakforthebeer.budlight.com" style="color:#fff;text-decoration: none;font-weight:900;">PLAY NOW</a>
+        </button>
+        </div>
+        <div style="width:80%;height:1px;margin:5% auto;background-color:rgba(30, 30, 30, 0.25)"></div>
+        <p style="padding:10px 0;text-align:center;width:100%;margin:5% auto;font-size:10px;text-transform: uppercase; font-style: italic;"><i style="color:#fff;">© 2021 Anheuser-Busch Companies LLC, St. Louis, MO 63118</i></p>
+      </div>
+    </div>
   </div>
 </body>
 </html>

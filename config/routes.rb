@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :leaderboards, only: [:index]
     resources :users do
       scope module: :users do
-        resources :cards, only: [:index, :create]
+        resources :cards, only: [:index, :create, :update]
         resources :picks, only: [:index, :create]
         resources :orders, only: [:create]
       end
