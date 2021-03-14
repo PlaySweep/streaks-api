@@ -29,6 +29,7 @@ gem 'counter_culture', '~> 2.0'
 gem 'deep_cloneable', '~> 3.0.0'
 gem 'leaderboard'
 gem 'sendgrid-ruby'
+gem 'light-service'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

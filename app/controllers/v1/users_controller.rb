@@ -8,12 +8,18 @@ class V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    if user.valid?
-      token = JsonWebToken.encode(user_id: user.id, eligible: user.eligible)
-      render json: {user: user, token: token}
+    @user = User.new(user_params)
+
+    # Set referral id present
+    referred_by = User.find_by(referral_code: params["ref"]) if params["ref"]
+    @user.referred_by_id = referred_by.id unless referred_by.nil?
+
+    if @user.save
+      WelcomeMailer.notify(@user).deliver_later
+      token = JsonWebToken.encode(user_id: @user.id)
+      render json: {user: @user, token: token}
     else
-      render json: {errors: user.errors.full_messages}
+      render json: { errors: user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +37,7 @@ class V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :first_name, :last_name, :dob, :email, :password, :account_id)
+    params.permit(:username, :first_name, :last_name, :dob, :email, :password, :account_id, :referred_by_id)
   end
 
 end

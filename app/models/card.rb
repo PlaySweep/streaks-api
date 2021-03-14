@@ -5,8 +5,9 @@ class Card < ApplicationRecord
   enum status: [:pending, :win, :loss]
 
   scope :ordered, -> { order(created_at: :asc) }
+  scope :current, -> { joins(:round).merge(Round.pending) }
 
-  after_save :update_streak, :deliver_notification
+  after_save :update_streak, :update_bonus_stats, :deliver_notification
 
   private
 
@@ -30,4 +31,12 @@ class Card < ApplicationRecord
       end
     end
   end
+
+  def update_bonus_stats
+    if saved_change_to_bonus?(from: false, to: true)
+      current_points = user.cards.sum(:picks_won_count)
+      POINTS_LEADERBOARD.rank_member(user_id.to_s, current_points += 1, { name: user.username }.to_json)
+    end
+  end
+
 end

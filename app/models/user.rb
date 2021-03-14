@@ -2,13 +2,14 @@ class User < ApplicationRecord
   has_secure_password
 
   belongs_to :account
+  belongs_to :referred_by, class_name: "User", optional: true
   has_one :address, dependent: :destroy
   has_one :streak, dependent: :destroy
   has_many :picks
   has_many :rewards
   has_many :cards
 
-  before_create :set_referral_code
+  before_create :set_referral_code, :check_for_referral
   after_create :add_streak_record
 
   def won_round? current_round
@@ -22,11 +23,29 @@ class User < ApplicationRecord
     POINTS_LEADERBOARD.rank_member(id.to_s, picks.win.size, { name: username }.to_json) if type == :points
   end
 
-  def rank
-    STREAK_LEADERBOARD.rank_for(id.to_s)
+  def streak_rank
+    STREAK_LEADERBOARD.rank_for(id.to_s) || 0
+  end
+
+  def points_rank
+    POINTS_LEADERBOARD.rank_for(id.to_s) || 0
+  end
+
+  def current_card
+    cards.current.last
+  end
+
+  def played?
+    cards.current.any?
   end
 
   private
+
+  def check_for_referral
+    if self.referred_by_id?
+      self.referred_by.current_card.update_attributes(bonus: true) unless self.referred_by.current_card.nil?
+    end
+  end
 
   def add_streak_record
     Streak.find_or_create_by(user_id: id)
