@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :users do
       scope module: :users do
         resources :cards, only: [:index, :create, :update]
-        resources :picks, only: [:index, :create]
+        resources :picks, only: [:index, :create, :update]
         resources :orders, only: [:create]
       end
     end

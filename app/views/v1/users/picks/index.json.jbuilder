@@ -1,0 +1,1 @@
+json.picks @picks, partial: 'v1/users/picks/pick', as: :pick
