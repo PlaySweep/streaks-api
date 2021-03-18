@@ -1,28 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,900&display=swap" rel="stylesheet">
-
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <title></title>
+	<!--[if mso]>
   <style>
-  body { font-family: "Lato", sans-serif }
+    table {border-collapse:collapse;border-spacing:0;border:none;margin:0;}
+    div, td {padding:0;}
+    div {margin:0 !important;}
+	</style>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    table, td, div, h1, p {
+      font-family: Arial, sans-serif;
+    }
+    @media screen and (max-width: 530px) {
+      .unsub {
+        display: block;
+        padding: 8px;
+        margin-top: 14px;
+        border-radius: 6px;
+        background-color: #555555;
+        text-decoration: none !important;
+        font-weight: bold;
+      }
+      .col-lge {
+        max-width: 100% !important;
+        text-align: center;
+      }
+    }
+    @media screen and (min-width: 531px) {
+      .col-sml {
+        max-width: 27% !important;
+        text-align:center;
+      }
+      .col-lge {
+        max-width: 73% !important;
+        text-align: left;
+      }
+    }
   </style>
 </head>
-<body>
-  <div class="w3-content" style="margin: 0 auto;max-width:500px;width:500px;text-align: center;">
-    <div class="w3-display-container w3-center" style="display: block;height:auto;background-color:rgb(17, 30, 75);">
-      <img src="https://streaks-challenge.s3.amazonaws.com/legends_logo.png" style="width: 300px;height: auto;" />
-      <div class="w3-container w3-content" style="max-width:800px;margin:10% auto;" id="band">
-        <div style="position:relative;bottom:50px;text-align:center;">
-          <h1 class="w3-wide" style="font-size:24px;font-weight:900;margin:2.5% auto;color:#fff">Congratulations <%= @user.first_name %>, you are registered!</h1>
-          <button style="border-radius:15px;width:60%;margin:2.5% auto;border:2.5px solid rgb(144, 213, 251);padding:3%;background-color:rgb(17, 30, 75);font-size: 18px;text-transform: uppercase;color:#fff;">
-          <a class="w3-wide" href="https://streakforthebeer.budlight.com" style="color:#fff;text-decoration: none;font-weight:900;">PLAY NOW</a>
-        </button>
-        </div>
-        <div style="width:80%;height:1px;margin:5% auto;background-color:rgba(30, 30, 30, 0.25)"></div>
-        <p style="padding:10px 0;text-align:center;width:100%;margin:5% auto;font-size:10px;text-transform: uppercase; font-style: italic;">BUD LIGHT® LEGENDS: STREAK FOR THE BEER.  No Purchase Necessary.  Open to US residents 21+.  Ends at the tip-off of the Championship game scheduled to occur on 4/5/21. See Official Rules at <a href="https://streakforthebeer.budlight.com">Streakforthebeer.budlight.com</a> for prizes & details. Msg & data rates may apply. Void where prohibited. *Prize is a $600 pre-paid card that can be used to purchase 2 24-packs of Bud Light per month for 12 months. © 2021 Anheuser-Busch, Bud Light® Beer, St. Louis, MO</p>
-      </div>
-    </div>
+<body style="margin:0;padding:0;word-spacing:normal;background-color:#939297;">
+  <div role="article" aria-roledescription="email" lang="en" style="text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:rgba(17, 30, 75, 0.95);">
+    <table role="presentation" style="width:100%;border:none;border-spacing:0;">
+      <tr>
+        <td align="center" style="padding:0;">
+          <!--[if mso]>
+          <table role="presentation" align="center" style="width:600px;">
+          <tr>
+          <td>
+          <![endif]-->
+          <table role="presentation" style="width:100%;max-width:600px;border:none;border-spacing:0;text-align:left;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#363636;">
+            
+
+            <tr>
+              <td style="background-color:rgb(57, 143, 214);padding:15px 5px 5px 5px;text-align:center;font-size:18px;font-weight:bold;">
+                <p style="color:#fff;margin-top:0;margin-bottom:12px;">Welcome to Streak for the Beer!</p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:0;font-size:24px;line-height:28px;font-weight:bold;">
+                <a href="https://streakforthebeer.budlight.com/dashboard" style="text-decoration:none;"><img src="https://streaks-challenge.s3.amazonaws.com/email_legends_header.png" width="600" alt="" style="width:100%;height:auto;display:block;border:none;text-decoration:none;color:#363636;"></a>
+              </td>
+            </tr>
+            
+            <tr>
+              <td style="text-align:center;padding:35px 30px 11px 30px;font-size:0;background-color:rgba(17, 30, 75, 1);border-bottom:1px solid #f0f0f5;border-color:rgba(57, 143, 214, 0.1);">
+                <!--[if mso]>
+                <table role="presentation" width="100%">
+                <tr>
+                <td style="width:145px;" align="left" valign="top">
+                <![endif]-->
+                <div class="col-sml" style="display:inline-block;width:100%;max-width:145px;vertical-align:top;font-family:Arial,sans-serif;font-size:14px;color:#fff;">
+                  <img src="https://streaks-challenge.s3.amazonaws.com/basketball_logo.png" width="115" alt="" style="width:80%;max-width:115px;margin-bottom:20px;">
+                </div>
+                <!--[if mso]>
+                </td>
+                <td style="width:395px;padding-bottom:20px;" valign="top">
+                <![endif]-->
+                <div class="col-lge" style="display:inline-block;width:100%;max-width:395px;vertical-align:top;padding-bottom:20px;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#fff;">
+                  <p style="margin-top:0;margin-bottom:12px;">Pick 3 out of 5 correct each round to earn a streak. Redeem streaks for legendary prizes like a year’s worth of free beer or a 2022 March Hoops Experience.</p>
+                  <p style="margin:0;"><a href="https://streakforthebeer.budlight.com/dashboard" style="background: rgb(57, 143, 214); text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i><![endif]--><span style="mso-text-raise:10pt;font-weight:bold;">Make your picks now!</span><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%">&nbsp;</i><![endif]--></a></p>
+                </div>
+                <!--[if mso]>
+                </td>
+                </tr>
+                </table>
+                <![endif]-->
+              </td>
+            </tr>
+
+            
+            <tr>
+              <td style="text-align:center;padding:35px 30px 11px 30px;font-size:0;background-color:rgba(17, 30, 75, 1);border-bottom:1px solid #f0f0f5;border-color:rgba(57, 143, 214, 0.1);">
+                <!--[if mso]>
+                <table role="presentation" width="100%">
+                <tr>
+                <td style="width:145px;" align="left" valign="top">
+                <![endif]-->
+                <div class="col-sml" style="display:inline-block;width:100%;max-width:145px;vertical-align:top;font-family:Arial,sans-serif;font-size:14px;color:#fff;">
+                  <img src="https://streaks-challenge.s3.amazonaws.com/drizly_logo.png" width="115" alt="" style="width:80%;max-width:115px;margin-bottom:20px;">
+                </div>
+                <!--[if mso]>
+                </td>
+                <td style="width:395px;padding-bottom:20px;" valign="top">
+                <![endif]-->
+                <div class="col-lge" style="display:inline-block;width:100%;max-width:395px;vertical-align:top;padding-bottom:20px;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#fff;">
+                  <p style="margin-top:0;margin-bottom:12px;">Wanna earn a boost? After you have made your picks, enter the 8 digit order ID from your Drizly receipt to earn a bonus point for your current round!</p>
+                  <p style="margin:0;"><a href="https://streakforthebeer.budlight.com/dashboard" style="background: rgb(57, 143, 214); text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i><![endif]--><span style="mso-text-raise:10pt;font-weight:bold;">Earn a Bonus Point!</span><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%">&nbsp;</i><![endif]--></a></p>
+                </div>
+                <!--[if mso]>
+                </td>
+                </tr>
+                </table>
+                <![endif]-->
+              </td>
+            </tr>
+            
+            <tr>
+              <td style="padding:30px;text-align:center;font-size:12px;background-color:rgba(17, 30, 75, 1);color:#fff;">
+                <p style="margin:10px 0;font-size:14px;line-height:20px;">© 2021 Anheuser-Busch, Bud Light® Beer, St. Louis, MO</p>
+                <p style="font-size:10px;margin:0 0 8px 0;">BUD LIGHT® LEGENDS: STREAK FOR THE BEER.  No Purchase Necessary.  Open to US residents 21+.  Ends at the tip-off of the Championship game scheduled to occur on 4/5/21.</p>
+                <p style="font-size:10px;margin:0 0 8px 0;">See Official Rules at <a href="https://streakforthebeer.budlight.com/dashboard" style="text-decoration:none;">Streakforthebeer.budlight.com</a> for prizes & details.  Msg & data rates may apply.  Void where prohibited.  *Prize is a $600 pre-paid card that can be used to purchase 2 24-packs of Bud Light per month for 12 months.</p>
+              </td>
+            </tr>
+
+            
+          </table>
+          <!--[if mso]>
+          </td>
+          </tr>
+          </table>
+          <![endif]-->
+        </td>
+      </tr>
+    </table>
   </div>
 </body>
 </html>
