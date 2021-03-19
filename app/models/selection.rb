@@ -9,6 +9,8 @@ class Selection < ApplicationRecord
   enum status: [ :pending, :winner, :loser ]
 
   scope :ordered, -> { order(order: :asc) }
+  scope :winners, -> { where(status: 1) }
+  scope :losers, -> { where(status: 2) }
 
   after_update :check_associated_matchup_status
 
@@ -18,12 +20,12 @@ class Selection < ApplicationRecord
 
   private
 
-  # def check_associated_matchup_status
-  #   if matchup.selections.pending.empty?
-  #     self.matchup.ready!
-  #   else
-  #     self.matchup.incomplete! unless event.incomplete?
-  #   end
-  # end
+  def check_associated_matchup_status
+    if matchup.selections.pending.empty?
+      matchup.ready!
+    else
+      matchup.incomplete! unless matchup.incomplete?
+    end
+  end
 
 end

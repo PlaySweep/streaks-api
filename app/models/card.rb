@@ -12,23 +12,18 @@ class Card < ApplicationRecord
   private
 
   def update_streak
-    if saved_change_to_picks_won_count?
-      if picks_won_count == 3
-        streak = user.streak
-        if streak.nil?
-          user.create_streak(current: 1, highest: 1, previous: 0)
-        else
-          streak.update_attributes(current: streak.current += 1, previous: streak.current, highest: streak.highest < streak.current ? streak.current : streak.highest)
-        end
-      end
+    if saved_change_to_status?(from: "pending", to: "win")
+      user.streak.update_attributes(current: user.streak.current += 1, previous: user.streak.current, highest: user.streak.highest < user.streak.current ? user.streak.current : user.streak.highest)
+    end
+    if saved_change_to_status?(from: "pending", to: "loss")
+      user.streak.update_attributes(previous: user.streak.current, highest: user.streak.highest < user.streak.current ? user.streak.current : user.streak.highest)
+      user.streak.update_attributes(current: 0)
     end
   end
 
   def deliver_notification
-    if saved_change_to_picks_won_count?
-      if picks_won_count == 3
-        # DeliverStreakNotificationJob.perform_now
-      end
+    if saved_change_to_status?(from: "pending", to: "win")
+    # DeliverStreakNotificationJob.perform_nowroun
     end
   end
 

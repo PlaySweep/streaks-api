@@ -2,6 +2,7 @@ class Round < ApplicationRecord
   WINNING_THRESHOLD = 3
   belongs_to :account
   has_many :matchups, dependent: :destroy
+  has_many :cards
   has_many :selections, through: :matchups, dependent: :destroy
   has_many :users, -> { distinct }, through: :matchups
   has_many :picks, -> { distinct }, through: :users
@@ -12,6 +13,7 @@ class Round < ApplicationRecord
   scope :active, -> { where(status: [1, 2, 3])}
   
   after_save :settle_results
+  after_update :set_next_round_status
 
   def winners
     selections.winners
@@ -22,15 +24,16 @@ class Round < ApplicationRecord
   def settle_results
     users.each do |user|
       if saved_change_to_status?(from: 'ready', to: 'complete')
-        streak = Streak.find_or_create_by(user_id: user_id)
         if user.won_round?(self)
-          user.rewards.create!
-          streak.update_attributes(previous: streak.current, current: streak.current += 1) 
-          streak.update_attributes(highest: streak.current) if streak.highest < streak.current
+          user.cards.find_by(round_id: id).win!
         else
-          streak.update_attributes(previous: streak.current, current: 0) 
+          user.cards.find_by(round_id: id).loss!
         end
       end
     end
+  end
+
+  def set_next_round_status
+    Round.inactive.ordered.first.pending! if saved_change_to_status?(from: "complete", to: "done")
   end
 end
