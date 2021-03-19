@@ -29,8 +29,8 @@ class Card < ApplicationRecord
 
   def update_bonus_stats
     if saved_change_to_bonus?(from: false, to: true)
-      current_points = user.cards.sum(:picks_won_count)
-      POINTS_LEADERBOARD.rank_member(user_id.to_s, current_points += 1, { name: user.username }.to_json)
+      current_points = POINTS_LEADERBOARD.score_for(user.id.to_s).to_i || 0
+      POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points += 1, { name: user.username }.to_json)
     end
   end
 

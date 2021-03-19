@@ -28,8 +28,8 @@ class Pick < ApplicationRecord
     card = user.cards.find_or_create_by(round_id: matchup.round_id)
     if win?
       card.update_attributes(picks_won_count: card.picks_won_count += 1)
-      current_points = user.cards.sum(:picks_won_count)
-      POINTS_LEADERBOARD.rank_member(user_id.to_s, current_points += 1, { name: user.username }.to_json)
+      current_points = POINTS_LEADERBOARD.score_for(user.id.to_s).to_i || 0
+      POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points += 1, { name: user.username }.to_json)
     end
   end
 end
