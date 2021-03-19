@@ -9,6 +9,7 @@ class Round < ApplicationRecord
   enum status: [ :inactive, :pending, :started, :ready, :complete, :done, :postponed, :deactivated ]
 
   scope :ordered, -> { order(start_time: :asc) }
+  scope :active, -> { where(status: [1, 2, 3])}
   
   after_save :settle_results
 

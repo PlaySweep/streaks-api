@@ -5,7 +5,7 @@ class Card < ApplicationRecord
   enum status: [:pending, :win, :loss]
 
   scope :ordered, -> { order(created_at: :asc) }
-  scope :current, -> { joins(:round).merge(Round.pending) }
+  scope :current, -> { joins(:round).merge(Round.active) }
 
   after_save :update_streak, :update_bonus_stats, :deliver_notification
 
