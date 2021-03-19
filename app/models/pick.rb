@@ -11,7 +11,6 @@ class Pick < ApplicationRecord
 
   before_save :is_locked?
   after_save :update_counter_cache
-  after_save :update_user_stats
 
   private
 
@@ -27,10 +26,10 @@ class Pick < ApplicationRecord
 
   def update_counter_cache
     card = user.cards.find_or_create_by(round_id: matchup.round_id)
-    card.update_attributes(picks_won_count: card.picks_won_count += 1) if win?
-  end
-
-  def update_user_stats
-    user.update_leaderboard_for(:points) if saved_change_to_status?(from: "pending", to: "win")
+    if win?
+      card.update_attributes(picks_won_count: card.picks_won_count += 1)
+      current_points = user.cards.sum(:picks_won_count)
+      POINTS_LEADERBOARD.rank_member(user_id.to_s, current_points += 1, { name: user.username }.to_json)
+    end
   end
 end
