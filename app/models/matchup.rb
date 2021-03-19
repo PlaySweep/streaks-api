@@ -12,11 +12,11 @@ class Matchup < ApplicationRecord
 
   private
 
-  def update_picks
-    round = Slate.find(self.round_id)
-    self.picks.where(selection_id: self.winner_ids).map(&:win!)
-    self.picks.where(selection_id: self.loser_ids).map(&:loss!)
-    self.update_columns(status: 3)
-    round.ready! if round.matchups.closed.size == round.matchups.size
-  end
+  # def update_picks
+  #   round = Slate.find(self.round_id)
+  #   self.picks.where(selection_id: self.winner_ids).map(&:win!)
+  #   self.picks.where(selection_id: self.loser_ids).map(&:loss!)
+  #   self.update_columns(status: 3)
+  #   round.ready! if round.matchups.closed.size == round.matchups.size
+  # end
 end

@@ -18,12 +18,12 @@ class Selection < ApplicationRecord
 
   private
 
-  def check_associated_matchup_status
-    if matchup.selections.pending.empty?
-      self.matchup.ready!
-    else
-      self.matchup.incomplete! unless event.incomplete?
-    end
-  end
+  # def check_associated_matchup_status
+  #   if matchup.selections.pending.empty?
+  #     self.matchup.ready!
+  #   else
+  #     self.matchup.incomplete! unless event.incomplete?
+  #   end
+  # end
 
 end
