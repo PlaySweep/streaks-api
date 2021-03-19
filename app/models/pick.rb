@@ -26,7 +26,7 @@ class Pick < ApplicationRecord
   end
 
   def update_counter_cache
-    card = user.cards.find_by(round_id: matchup.round_id)
+    card = user.cards.find_or_create_by(round_id: matchup.round_id)
     card.update_attributes(picks_won_count: card.picks_won_count += 1) if win?
   end
 
