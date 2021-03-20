@@ -10,7 +10,7 @@ class Card < ApplicationRecord
   validates :round_id, uniqueness: { scope: :user_id, message: "only 1 Card per Entry" }
 
   around_save :catch_uniqueness_exception
-  after_save :update_streak, :update_bonus_stats, :deliver_notification
+  after_save :update_streak, :increment_bonus_stats, :decrement_bonus_stats, :deliver_notification
 
   private
 
@@ -36,10 +36,17 @@ class Card < ApplicationRecord
     end
   end
 
-  def update_bonus_stats
+  def increment_bonus_stats
     if saved_change_to_bonus?(from: false, to: true)
       current_points = POINTS_LEADERBOARD.score_for(user.id.to_s).to_i || 0
       POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points += 1, { name: user.username }.to_json)
+    end
+  end
+
+  def decrement_bonus_stats
+    if saved_change_to_bonus?(from: true, to: false)
+      current_points = POINTS_LEADERBOARD.score_for(user.id.to_s).to_i || 0
+      POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points -= 1, { name: user.username }.to_json)
     end
   end
 
