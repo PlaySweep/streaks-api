@@ -1,4 +1,5 @@
 class Round < ApplicationRecord
+  BONUS_THRESHOLD = 2
   WINNING_THRESHOLD = 3
   belongs_to :account
   has_many :matchups, dependent: :destroy
@@ -24,10 +25,11 @@ class Round < ApplicationRecord
   def settle_results
     users.each do |user|
       if saved_change_to_status?(from: 'ready', to: 'complete')
-        if user.won_round?(self)
-          user.cards.find_by(round_id: id).win!
+        card_for_round = user.cards.find_by(round_id: id)
+        if user.won_round?(card_for_round)
+          card_for_round.win!
         else
-          user.cards.find_by(round_id: id).loss!
+          card_for_round.loss!
         end
       end
     end

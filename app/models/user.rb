@@ -12,10 +12,16 @@ class User < ApplicationRecord
   before_create :set_referral_code, :check_for_referral
   after_create :add_streak_record
 
-  def won_round? current_round
-    current_round.matchups.pluck(:id)
-    winning_picks = picks.where(matchup_id: current_round.matchups.pluck(:id), status: 1)
-    winning_picks.size >= Round::WINNING_THRESHOLD
+  def won_round? card_for_round
+    won_by_bonus?(card_for_round) || won_by_picks?(card_for_round)
+  end
+
+  def won_by_bonus? card_for_round
+    (card_for_round.picks_won_count <= Round::BONUS_THRESHOLD) && card_for_round.bonus?
+  end
+
+  def won_by_picks? card_for_round
+    card_for_round.picks_won_count >= Round::WINNING_THRESHOLD
   end
 
   def update_leaderboard_for type

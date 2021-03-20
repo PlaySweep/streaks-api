@@ -7,9 +7,18 @@ class Card < ApplicationRecord
   scope :ordered, -> { order(created_at: :asc) }
   scope :current, -> { joins(:round).merge(Round.active) }
 
+  validates :round_id, uniqueness: { scope: :user_id, message: "only 1 Card per Entry" }
+
+  around_save :catch_uniqueness_exception
   after_save :update_streak, :update_bonus_stats, :deliver_notification
 
   private
+
+  def catch_uniqueness_exception
+    yield
+  rescue ActiveRecord::RecordNotUnique
+    self.errors.add(:round_id, :taken)
+  end
 
   def update_streak
     if saved_change_to_status?(from: "pending", to: "win")
