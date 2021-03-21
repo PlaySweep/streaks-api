@@ -48,7 +48,7 @@ class Card < ApplicationRecord
   def decrement_bonus_stats
     if saved_change_to_bonus?(from: true, to: false)
       current_points = POINTS_LEADERBOARD.score_for(user.id.to_s).to_i || 0
-      POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points -= 1, { name: user.username }.to_json)
+      POINTS_LEADERBOARD.rank_member(user.id.to_s, current_points -= 1, { name: user.username }.to_json) if current_points > 0
     end
   end
 
