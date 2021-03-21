@@ -22,10 +22,12 @@ class Card < ApplicationRecord
 
   def update_streak
     if saved_change_to_status?(from: "pending", to: "win")
+      STREAK_LEADERBOARD.rank_member(user.id.to_s, user.streak.current += 1, { name: user.username }.to_json)
       user.streak.update_attributes(current: user.streak.current += 1, previous: user.streak.current, highest: user.streak.highest < user.streak.current ? user.streak.current : user.streak.highest)
     end
     if saved_change_to_status?(from: "pending", to: "loss")
       user.streak.update_attributes(previous: user.streak.current, highest: user.streak.highest < user.streak.current ? user.streak.current : user.streak.highest)
+      STREAK_LEADERBOARD.rank_member(user.id.to_s, 0, { name: user.username }.to_json)
       user.streak.update_attributes(current: 0)
     end
   end

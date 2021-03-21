@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def won_by_bonus? card_for_round
-    (card_for_round.picks_won_count <= Round::BONUS_THRESHOLD) && card_for_round.bonus?
+    (card_for_round.picks_won_count >= Round::BONUS_THRESHOLD) && card_for_round.bonus?
   end
 
   def won_by_picks? card_for_round
