@@ -16,6 +16,7 @@ class V1::UsersController < ApplicationController
 
     if @user.save
       WelcomeMailer.notify(@user).deliver_later
+      # WelcomeJob.perform_later(@user.id)
       token = JsonWebToken.encode(user_id: @user.id)
       render json: {user: @user, token: token}
     else
