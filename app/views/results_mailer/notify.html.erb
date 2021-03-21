@@ -71,7 +71,7 @@
           <% else %>
           <tr>
             <td style="background-color:rgb(57, 143, 214);padding:15px 5px 5px 5px;text-align:center;font-size:18px;font-weight:bold;">
-              <p style="color:#fff;margin-top:0;margin-bottom:12px;">You have a streak of <%= @user.streak.current %>, <%= @user.first_name %>!</p>
+              <p style="color:#fff;margin-top:0;margin-bottom:12px;">You'll get em' next time, <%= @user.first_name %>!</p>
             </td>
           </tr>
           <% end %>
@@ -133,6 +133,34 @@
                 <![endif]-->
               </td>
             </tr>
+            <% end %>
+
+            <% if @card.loss? %>
+              <tr>
+                <td style="text-align:center;padding:35px 30px 11px 30px;font-size:0;background-color:rgba(17, 30, 75, 1);border-bottom:1px solid #f0f0f5;border-color:rgba(57, 143, 214, 0.1);">
+                  <!--[if mso]>
+                  <table role="presentation" width="100%">
+                  <tr>
+                  <td style="width:145px;" align="left" valign="top">
+                  <![endif]-->
+                  <div class="col-sml" style="display:inline-block;width:100%;max-width:145px;vertical-align:top;font-family:Arial,sans-serif;font-size:14px;color:#fff;">
+                    <img src="https://streaks-challenge.s3.amazonaws.com/drizly_logo.png" width="115" alt="" style="width:80%;max-width:115px;margin-bottom:20px;">
+                  </div>
+                  <!--[if mso]>
+                  </td>
+                  <td style="width:395px;padding-bottom:20px;" valign="top">
+                  <![endif]-->
+                  <div class="col-lge" style="display:inline-block;width:100%;max-width:395px;vertical-align:top;padding-bottom:20px;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#fff;">
+                    <p style="margin-top:0;margin-bottom:12px;">Wanna earn a boost? After you have made your picks, enter the 8 digit order ID from your Drizly receipt to earn a bonus point for your current round. Use promo code STREAK for $5 off your order.</p>
+                    <p style="margin:0;"><a href="https://streakforthebeer.budlight.com/dashboard" style="background: rgb(57, 143, 214); text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i><![endif]--><span style="mso-text-raise:10pt;font-weight:bold;">Earn a Bonus Point!</span><!--[if mso]><i style="letter-spacing: 25px;mso-font-width:-100%">&nbsp;</i><![endif]--></a></p>
+                  </div>
+                  <!--[if mso]>
+                  </td>
+                  </tr>
+                  </table>
+                  <![endif]-->
+                </td>
+              </tr>
             <% end %>
 
             <tr>
