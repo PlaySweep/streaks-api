@@ -11,11 +11,13 @@ class Order < ApplicationRecord
   private
 
   def deliver_notification
-    # Send Order Email
+    OrderMailer.notify(self).deliver_now
   end
 
   def reset_streak
-    user.streak.update_attributes(current: 0)
+    new_streak = user.streak.current -= prize.level
+    STREAK_LEADERBOARD.rank_member(user.id.to_s, new_streak, { name: user.username }.to_json)
+    user.streak.update_attributes(current: new_streak)
   end
 
   def update_inventory

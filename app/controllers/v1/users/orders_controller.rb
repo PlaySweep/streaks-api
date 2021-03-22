@@ -9,7 +9,7 @@ class V1::Users::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :prize_id)
+    params.require(:order).permit(:user_id, :prize_id, :email)
   end
 
 end

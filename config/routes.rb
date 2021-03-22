@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :leaderboards, only: [:index]
     resources :users do
       scope module: :users do
+        resources :addresses, only: [:create, :update]
         resources :cards, only: [:index, :create, :update]
         resources :picks, only: [:index, :create, :update]
         resources :orders, only: [:create]

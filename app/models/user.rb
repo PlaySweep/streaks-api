@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :rewards
   has_many :cards
 
-  accepts_nested_attributes_for :address
-
   before_create :set_referral_code, :check_for_referral
   after_create :add_streak_record
 
