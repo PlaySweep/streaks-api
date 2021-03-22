@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_153115) do
+ActiveRecord::Schema.define(version: 2021_03_22_185536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_153115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.string "size"
     t.index ["prize_id"], name: "index_orders_on_prize_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_153115) do
     t.integer "inventory", default: 0
     t.integer "is_type", default: 0
     t.string "code"
+    t.boolean "has_size", default: false
   end
 
   create_table "rewards", force: :cascade do |t|

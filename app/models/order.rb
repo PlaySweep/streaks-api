@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   scope :for_yesterday, -> { where('created_at BETWEEN ? AND ?', DateTime.current.beginning_of_day - 1, DateTime.current.end_of_day - 1) }
   scope :recent, -> { where('created_at BETWEEN ? AND ?', DateTime.current.beginning_of_day - 14, DateTime.current.end_of_day) }
 
-  after_create :deliver_notification, :reset_streak, :update_inventory
+  after_create :deliver_notification, :reset_streak
 
   private
 
@@ -18,10 +18,6 @@ class Order < ApplicationRecord
     new_streak = user.streak.current -= prize.level
     STREAK_LEADERBOARD.rank_member(user.id.to_s, new_streak, { name: user.username }.to_json)
     user.streak.update_attributes(current: new_streak)
-  end
-
-  def update_inventory
-    prize.decrement(:inventory) if prize.inventory > 0
   end
 
 end
