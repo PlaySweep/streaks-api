@@ -19,4 +19,15 @@ class ResultsMailer < ApplicationMailer
     )
     end
   end
+
+  def reminder(user)
+    @user = user
+  
+    mail(
+      from: "streaks@streakforthebeer.com",
+      to: @user.email,
+      subject: "🏀 Make your picks for Round 3!",
+      content_type: "text/html"
+    )
+  end
 end
