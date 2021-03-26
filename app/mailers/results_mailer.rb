@@ -1,5 +1,5 @@
 class ResultsMailer < ApplicationMailer
-  default from: "hi@streakforthebeer.com"
+  default from: "streaks@streakforthebeer.com"
 
   def notify(user, card)
     @user = user
