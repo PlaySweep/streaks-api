@@ -26,7 +26,7 @@ class ResultsMailer < ApplicationMailer
     mail(
       from: "streaks@streakforthebeer.com",
       to: @user.email,
-      subject: "🏀 Make your picks for Round 3!",
+      subject: "🏀 Make your picks for Round 4!",
       content_type: "text/html"
     )
   end
