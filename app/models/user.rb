@@ -8,9 +8,14 @@ class User < ApplicationRecord
   has_many :picks
   has_many :rewards
   has_many :cards
+  has_many :sweeps
 
   before_create :set_referral_code, :check_for_referral
   after_create :add_streak_record
+
+  def locked?
+    Round.locked.any? || sweeps.any?
+  end
 
   def won_round? card_for_round
     won_by_bonus?(card_for_round) || won_by_picks?(card_for_round)

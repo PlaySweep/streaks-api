@@ -10,4 +10,5 @@ json.played_cards user.cards.ordered, partial: 'v1/users/cards/card', as: :card
 json.streak_score STREAK_LEADERBOARD.score_for(user.id.to_s) || 0
 json.points_score POINTS_LEADERBOARD.score_for(user.id.to_s) || 0
 json.played user.played?
+json.locked user.locked?
 json.points_rank POINTS_LEADERBOARD.total_members > 0 ? user.points_rank : 0

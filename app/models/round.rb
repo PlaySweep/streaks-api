@@ -12,6 +12,7 @@ class Round < ApplicationRecord
 
   scope :ordered, -> { order(start_time: :asc) }
   scope :active, -> { where(status: [1, 2, 3])}
+  scope :locked, -> { where(status: [2, 3])}
   
   after_save :settle_results
   after_update :set_next_round_status
